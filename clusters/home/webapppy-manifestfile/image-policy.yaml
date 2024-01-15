@@ -2,7 +2,7 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: webapppy-ImagePolicy
+  name: webapppy-imagepolicy
   namespace: webapppy-flux
 status:
   latestImage: skoopy365/webapp-py

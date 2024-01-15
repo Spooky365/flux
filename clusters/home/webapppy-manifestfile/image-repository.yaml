@@ -2,7 +2,7 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
-  name: webapppy-ImageRepository
+  name: webapppy-imagerepository
   namespace: webapppy-flux
 spec:
   image: skoopy365/webapp-py
