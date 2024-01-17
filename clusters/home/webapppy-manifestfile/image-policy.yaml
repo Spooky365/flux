@@ -3,8 +3,11 @@ apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: webapppy-imagepolicy
-  namespace: webapppy-flux
-status:
-  latestImage: skoopy365/webapp-py
-  interval: 1m 
-  provider: generic
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: webapppy-imagerepository
+    namespace: flux-system
+  policy:
+    semver:
+      range: '>=1.0.0'

@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: app-test-1
-        image: skoopy365/webapp-py:9c6023d5ab92c281e1f98afc67e8b9e0c66585ab
+        image: skoopy365/webapp-py:latest # {"$imagepolicy": "webapppy-flux:webapppy-imagepolicy"}
         ports:
         - name: web
           containerPort: 8000
