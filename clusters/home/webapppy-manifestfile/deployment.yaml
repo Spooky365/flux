@@ -11,7 +11,7 @@ metadata:
 spec:
   replicas: 1
   selector:
-    matchLabels: 
+    matchLabels:
       app: app-test-1
   template:
     metadata:
@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: app-test-1
-        image: skoopy365/webapp-py:1.0.0 # {"$imagepolicy": "flux-system:webapppy-imagepolicy"}
+        image: skoopy365/webapp-py:1.0.9 # {"$imagepolicy": "flux-system:webapppy-imagepolicy"}
         ports:
         - name: web
           containerPort: 8000
@@ -30,7 +30,7 @@ spec:
         cpu: "250m"
       limits:
         memory: "128Mi"
-        cpu: "500m"  
+        cpu: "500m"
 ---
 apiVersion: v1
 kind: Service
@@ -42,8 +42,8 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-  - name:  http
-    port:  8000
+  - name: http
+    port: 8000
     targetPort: 8000
     protocol: TCP
   selector:
@@ -52,23 +52,23 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
- name: app-test-1-ingress
- namespace: webapppy-flux
- annotations:
-   cert-manager.io/issuer: "letsencrypt-production"
+  name: app-test-1-ingress
+  namespace: webapppy-flux
+  annotations:
+    cert-manager.io/issuer: "letsencrypt-production"
 spec:
- tls:
-   - hosts:
-       - webapppy-flux.lukflk.nl
-     secretName: wildcard-lukflk
- rules:
-   - host: webapppy-flux.lukflk.nl
-     http:
-       paths:
-         - path: /
-           pathType: Prefix
-           backend:
-             service:
-               name: app-test-1-svc
-               port:
-                 number: 8000
+  tls:
+    - hosts:
+        - webapppy-flux.lukflk.nl
+      secretName: wildcard-lukflk
+  rules:
+    - host: webapppy-flux.lukflk.nl
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: app-test-1-svc
+                port:
+                  number: 8000
